@@ -6,6 +6,9 @@ import Home from "./components/Home";
 import AddTech from "./components/AddTech";
 import DeleteTech from "./components/DeleteTech";
 import EditTech from "./components/EditTech";
+import DeleteCourse from "./components/DeleteCourse";
+import EditCourse from "./components/EditCourse";
+import AddCourse from "./components/AddCourse";
 
 const App = () => {
   const [techs, setTechs] = useState<Technology[]>([]);
@@ -34,18 +37,17 @@ const App = () => {
       <span className="feedback">{feedback}</span>
       <Routes>
         <Route path="/" element={<Outlet />}>
-          <Route path="" element={<Home techs={techs} courses={courses} />} />
+          <Route
+            path=""
+            element={
+              <Home techs={techs} courses={courses} updateData={updateData} />
+            }
+          />
         </Route>
         <Route path="/tech" element={<Outlet />}>
           <Route
             path="add"
-            element={
-              <AddTech
-                setFeedback={setFeedback}
-                courses={courses}
-                updateData={updateData}
-              />
-            }
+            element={<AddTech setFeedback={setFeedback} courses={courses} />}
           />
           <Route
             path="edit/:_id"
@@ -54,7 +56,6 @@ const App = () => {
                 setFeedback={setFeedback}
                 courses={courses}
                 techs={techs}
-                updateData={updateData}
               />
             }
           />
@@ -64,9 +65,17 @@ const App = () => {
           />
         </Route>
         <Route path="/course" element={<Outlet />}>
-          <Route path="add" element={<p>Add</p>} />
-          <Route path="edit/:_id" element={<p>Edit</p>} />
-          <Route path="delete/:_id" element={<p>Delete</p>} />
+          <Route path="add" element={<AddCourse setFeedback={setFeedback} />} />
+          <Route
+            path="edit/:_id"
+            element={<EditCourse setFeedback={setFeedback} courses={courses} />}
+          />
+          <Route
+            path="delete/:_id"
+            element={
+              <DeleteCourse courses={courses} setFeedback={setFeedback} />
+            }
+          />
         </Route>
       </Routes>
     </div>

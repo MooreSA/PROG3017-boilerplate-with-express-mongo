@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Course } from "../types/api";
 import "./tech.scss";
 
-const AddTech = ({ courses, setFeedback, updateData }: Props) => {
+const AddTech = ({ courses, setFeedback }: Props) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [difficulty, setDifficulty] = useState<number>(1);
@@ -68,7 +68,6 @@ const AddTech = ({ courses, setFeedback, updateData }: Props) => {
   const handleSubmit = () => {
     if (formIsValid()) {
       submitForm();
-      updateData();
       navigate("/");
     }
   };
@@ -173,7 +172,6 @@ const AddTech = ({ courses, setFeedback, updateData }: Props) => {
 interface Props {
   courses: Course[];
   setFeedback: Function;
-  updateData: Function;
 }
 
 export default AddTech;

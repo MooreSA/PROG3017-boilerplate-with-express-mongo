@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Technology, Course } from "../types/api";
 import "./home.scss";
 
-const Home = ({ techs, courses }: HomeProps) => {
+const Home = ({ techs, courses, updateData }: HomeProps) => {
+  useEffect(() => {
+    updateData();
+  }, []);
   return (
     <div>
       <h2>Home</h2>
@@ -50,6 +53,7 @@ const Home = ({ techs, courses }: HomeProps) => {
 interface HomeProps {
   techs: Technology[];
   courses: Course[];
+  updateData: Function;
 }
 
 export default Home;

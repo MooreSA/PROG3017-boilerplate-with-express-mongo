@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router";
 import { Course, Technology } from "../types/api";
 
-const EditTech = ({ setFeedback, courses, techs, updateData }: Props) => {
+const EditTech = ({ setFeedback, courses, techs }: Props) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [difficulty, setDifficulty] = useState<number>(1);
@@ -16,7 +16,15 @@ const EditTech = ({ setFeedback, courses, techs, updateData }: Props) => {
   const tech = techs.find((t) => t._id === _id);
 
   const handleCheckboxChange = (course: Course) => {
-    console.log(course.code);
+    // if the box is checked, add the course to the list of selected courses
+    if (selectedCourses.find((c) => c.name === course.name)) {
+      setSelectedCourses(selectedCourses.filter((c) => c.name !== course.name));
+    } else {
+      setSelectedCourses([
+        ...selectedCourses,
+        { name: course.name, code: course.code },
+      ]);
+    }
   };
 
   const formIsValid = () => {
@@ -67,14 +75,9 @@ const EditTech = ({ setFeedback, courses, techs, updateData }: Props) => {
   const handleSubmit = () => {
     if (formIsValid()) {
       submitForm();
-      updateData();
       navigate("/");
     }
   };
-
-  useEffect(() => {
-    setFeedback("");
-  }, []);
 
   useEffect(() => {
     if (tech === undefined) {
@@ -194,7 +197,6 @@ interface Props {
   setFeedback: Function;
   courses: Course[];
   techs: Technology[];
-  updateData: Function;
 }
 
 export default EditTech;
