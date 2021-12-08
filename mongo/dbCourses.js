@@ -14,4 +14,24 @@ db.courses.insert([
     code: "INET2005",
     name: "Web Application Programming I",
   },
+  {
+    code: "PROG2700",
+    name: "Client Side Programming",
+  },
+  {
+    code: "PROG3017",
+    name: "Full Stack Programming",
+  },
+  {
+    code: "WEBD1000",
+    name: "Website Development",
+  },
+  {
+    code: "APPD1001",
+    name: "User Interface Design & Development",
+  },
+  {
+    code: "PROG1700",
+    name: "Logic and Programming",
+  },
 ]);

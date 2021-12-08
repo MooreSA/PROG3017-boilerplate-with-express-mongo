@@ -1,7 +1,6 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   server:
     build:
       context: ./server
@@ -52,11 +51,11 @@ services:
       - app-network
 
 networks:
-    app-network:
-        driver: bridge
+  app-network:
+    driver: bridge
 
 volumes:
-    data-volume:
-    node_modules:
-    web-root:
-      driver: local
+  data-volume:
+  node_modules:
+  web-root:
+    driver: local

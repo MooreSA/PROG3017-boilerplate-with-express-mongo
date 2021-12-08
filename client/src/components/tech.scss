@@ -1,0 +1,108 @@
+.tech {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+
+  padding-left: 1rem;
+
+  &__form {
+    max-width: 500px;
+  }
+
+  &__button-wrap {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+
+    margin-top: 1rem;
+  }
+
+  &__button {
+    background-color: #00bcd4;
+    font-family: Helvetica, Arial, sans-serif;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0.5rem;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    &--cancel {
+      background-color: #e53935;
+    }
+  }
+
+  &__button:last-child {
+    margin-left: 1rem;
+  }
+}
+
+.form {
+  &__error {
+    color: #f44336;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__input-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    max-width: 400px;
+  }
+
+  &__input,
+  &__text-area {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  &__select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    width: 50px;
+  }
+
+  &__label {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__button-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  &__button {
+    background-color: #00bcd4;
+    font-family: Helvetica, Arial, sans-serif;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    &--green {
+      background-color: #4caf50;
+    }
+  }
+}
