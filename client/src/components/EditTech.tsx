@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router";
 import { Course, Technology } from "../types/api";
 
-const EditTech = ({ setFeedback, courses, techs }: Props) => {
+const EditTech = ({ setFeedback, courses, techs, setIsLoading }: Props) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [difficulty, setDifficulty] = useState<number>(1);
@@ -72,9 +72,11 @@ const EditTech = ({ setFeedback, courses, techs }: Props) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (formIsValid()) {
-      submitForm();
+      setIsLoading(true);
+      await submitForm();
+      setIsLoading(false);
       navigate("/");
     }
   };
@@ -161,10 +163,9 @@ const EditTech = ({ setFeedback, courses, techs }: Props) => {
         <div className="form__input-wrap">
           <span className={"form__label"}>Used in Courses</span>
           {courses.map((course: Course, i) => (
-            <div className="form__check-wrap">
+            <div className="form__check-wrap" key={`course-wrap-${i}`}>
               <input
                 className="form__check"
-                key={`course-${i}`}
                 type="checkbox"
                 name="course"
                 checked={courseMatches(course)}
@@ -195,6 +196,7 @@ const EditTech = ({ setFeedback, courses, techs }: Props) => {
 
 interface Props {
   setFeedback: Function;
+  setIsLoading: Function;
   courses: Course[];
   techs: Technology[];
 }

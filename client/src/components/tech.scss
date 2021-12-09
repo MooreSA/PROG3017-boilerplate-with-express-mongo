@@ -9,6 +9,13 @@
     max-width: 500px;
   }
 
+  &__item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
   &__button-wrap {
     display: flex;
     flex-flow: row nowrap;

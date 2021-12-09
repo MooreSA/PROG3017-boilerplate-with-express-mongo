@@ -3,12 +3,13 @@ import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Course } from "../types/api";
 
-const DeleteCourse = ({ courses, setFeedback }: Props) => {
+const DeleteCourse = ({ courses, setFeedback, setIsLoading }: Props) => {
   const { _id } = useParams();
   const course = courses.find((c: Course) => c._id === _id);
   const nav = useNavigate();
 
   const handleDelete = async () => {
+    setIsLoading(true);
     const response = await fetch("http://localhost:8080/course", {
       method: "DELETE",
       headers: {
@@ -18,9 +19,11 @@ const DeleteCourse = ({ courses, setFeedback }: Props) => {
     });
     if (response.ok) {
       setFeedback("Course Delete Successful");
+      setIsLoading(false);
       nav("/");
     } else {
       setFeedback("Course Delete Failed");
+      setIsLoading(false);
       nav("/");
     }
   };
@@ -63,6 +66,7 @@ const DeleteCourse = ({ courses, setFeedback }: Props) => {
 interface Props {
   courses: Course[];
   setFeedback: (feedback: string) => void;
+  setIsLoading: (isLoading: boolean) => void;
 }
 
 export default DeleteCourse;

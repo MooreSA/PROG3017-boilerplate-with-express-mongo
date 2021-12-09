@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Course } from "../types/api";
 
-const AddCourse = ({ setFeedback }: Props) => {
+const AddCourse = ({ setFeedback, setIsLoading }: Props) => {
   const [courseName, setCourseName] = useState("");
   const [courseCode, setCourseCode] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +21,7 @@ const AddCourse = ({ setFeedback }: Props) => {
   };
 
   const submitForm = async () => {
-    const response = await fetch("http://locahost:8080/course", {
+    const response = await fetch("http://localhost:8080/course", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,9 +39,11 @@ const AddCourse = ({ setFeedback }: Props) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (formIsValid()) {
+      setIsLoading(true);
       submitForm();
+      setIsLoading(false);
     }
   };
 
@@ -93,6 +95,7 @@ const AddCourse = ({ setFeedback }: Props) => {
 
 interface Props {
   setFeedback: (feedback: string) => void;
+  setIsLoading: Function;
 }
 
 export default AddCourse;

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Course } from "../types/api";
 import "./tech.scss";
 
-const AddTech = ({ courses, setFeedback }: Props) => {
+const AddTech = ({ courses, setFeedback, setIsLoading }: Props) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [difficulty, setDifficulty] = useState<number>(1);
@@ -65,9 +65,11 @@ const AddTech = ({ courses, setFeedback }: Props) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (formIsValid()) {
-      submitForm();
+      setIsLoading(true);
+      await submitForm();
+      setIsLoading(false);
       navigate("/");
     }
   };
@@ -140,7 +142,7 @@ const AddTech = ({ courses, setFeedback }: Props) => {
           <span className={"form__label"}>Used in Courses</span>
           {courses.map((course: Course, i) => {
             return (
-              <div className="form__check-wrap">
+              <div className="form__check-wrap" key={`course-wrap-${i}`}>
                 <input
                   className="form__check"
                   type="checkbox"
@@ -172,6 +174,7 @@ const AddTech = ({ courses, setFeedback }: Props) => {
 interface Props {
   courses: Course[];
   setFeedback: Function;
+  setIsLoading: Function;
 }
 
 export default AddTech;

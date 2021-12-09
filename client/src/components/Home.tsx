@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Technology, Course } from "../types/api";
+import "@fortawesome/fontawesome-free/css/all.css";
+
 import "./home.scss";
 
 const Home = ({ techs, courses, updateData }: HomeProps) => {
@@ -13,37 +15,63 @@ const Home = ({ techs, courses, updateData }: HomeProps) => {
       <div className="home">
         <div className="techs">
           <h2 className="techs__title">Technologies</h2>
-          <ul className="techs__list">
-            <li className="techs__add">
-              <Link to="tech/add">Add Tech</Link>
-            </li>
-            {techs.map((tech: Technology) => {
+          <div className="techs__list">
+            <div className="techs__add">
+              <Link
+                style={{ marginRight: "10px" }}
+                className="fas fa-plus-square"
+                to="tech/add"
+              />
+              <Link to="tech/add">Add Course</Link>
+            </div>
+            {techs.map((tech: Technology, i) => {
               return (
-                <li className="tech">
-                  <Link to={`tech/edit/${tech._id}`}>Edit</Link>
-                  <Link to={`tech/delete/${tech._id}`}>Delete</Link>
+                <div className="tech__item" key={`tech-item-${i}`}>
+                  <Link
+                    className="fas fa-pen-square"
+                    style={{ margin: "0 10px 0px 0px" }}
+                    to={`tech/edit/${tech._id}`}
+                  />
+                  <Link
+                    style={{ margin: "0 10px 0px 0px" }}
+                    className="fas fa-minus-square"
+                    to={`tech/delete/${tech._id}`}
+                  />
                   <h3 className="tech__name">{tech.name}</h3>
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </div>
         </div>
         <div className="courses">
           <h2 className="courses__title">Courses</h2>
-          <ul className="courses__list">
-            <li className="courses__add">
+          <div className="courses__list">
+            <div className="courses__add">
+              <Link
+                style={{ marginRight: "10px" }}
+                className="fas fa-plus-square"
+                to="course/add"
+              />
               <Link to="course/add">Add Course</Link>
-            </li>
+            </div>
             {courses.map((course: Course) => {
               return (
                 <div className="course" key={course._id}>
-                  <Link to={`course/edit/${course._id}`}>Edit</Link>
-                  <Link to={`course/delete/${course._id}`}>Delete</Link>
+                  <Link
+                    className="fas fa-pen-square"
+                    style={{ marginRight: "10px" }}
+                    to={`course/edit/${course._id}`}
+                  />
+                  <Link
+                    className="fas fa-minus-square"
+                    style={{ marginRight: "10px" }}
+                    to={`course/delete/${course._id}`}
+                  />
                   <h3 className="course__title">{course.name}</h3>
                 </div>
               );
             })}
-          </ul>
+          </div>
         </div>
       </div>
     </div>

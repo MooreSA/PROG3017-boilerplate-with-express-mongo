@@ -4,12 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { Technology } from "../types/api";
 import "./tech.scss";
 
-const DeleteTech = ({ techs, setFeedback }: Props) => {
+const DeleteTech = ({ techs, setFeedback, setIsLoading }: Props) => {
   const { _id } = useParams();
   const nav = useNavigate();
   const tech = techs.find((t) => t._id === _id);
 
   const handleDelete = async () => {
+    setIsLoading(true);
     const response = await fetch("http://localhost:8080/tech", {
       method: "DELETE",
       headers: {
@@ -19,9 +20,11 @@ const DeleteTech = ({ techs, setFeedback }: Props) => {
     });
     if (response.ok) {
       setFeedback("Technology deleted");
+      setIsLoading(false);
       nav("/");
     } else {
       setFeedback("Error deleting technology");
+      setIsLoading(false);
     }
   };
 
@@ -60,6 +63,7 @@ const DeleteTech = ({ techs, setFeedback }: Props) => {
 interface Props {
   techs: Technology[];
   setFeedback: Function;
+  setIsLoading: Function;
 }
 
 export default DeleteTech;

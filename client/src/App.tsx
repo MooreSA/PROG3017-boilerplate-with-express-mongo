@@ -9,13 +9,16 @@ import EditTech from "./components/EditTech";
 import DeleteCourse from "./components/DeleteCourse";
 import EditCourse from "./components/EditCourse";
 import AddCourse from "./components/AddCourse";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 const App = () => {
   const [techs, setTechs] = useState<Technology[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [feedback, setFeedback] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const updateData = async () => {
+    setIsLoading(true);
     const response = await fetch("http://localhost:8080/get", {
       method: "GET",
       headers: {
@@ -25,6 +28,7 @@ const App = () => {
     const data = await response.json();
     setTechs(data.technologies);
     setCourses(data.courses);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -32,7 +36,8 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className="app-wrap">
+      <LoadingOverlay isLoading={isLoading} />
       <h1>Tech Roster Administration</h1>
       <span className="feedback">{feedback}</span>
       <Routes>
@@ -47,13 +52,20 @@ const App = () => {
         <Route path="/tech" element={<Outlet />}>
           <Route
             path="add"
-            element={<AddTech setFeedback={setFeedback} courses={courses} />}
+            element={
+              <AddTech
+                setFeedback={setFeedback}
+                setIsLoading={setIsLoading}
+                courses={courses}
+              />
+            }
           />
           <Route
             path="edit/:_id"
             element={
               <EditTech
                 setFeedback={setFeedback}
+                setIsLoading={setIsLoading}
                 courses={courses}
                 techs={techs}
               />
@@ -61,19 +73,43 @@ const App = () => {
           />
           <Route
             path="delete/:_id"
-            element={<DeleteTech setFeedback={setFeedback} techs={techs} />}
+            element={
+              <DeleteTech
+                setFeedback={setFeedback}
+                setIsLoading={setIsLoading}
+                techs={techs}
+              />
+            }
           />
         </Route>
         <Route path="/course" element={<Outlet />}>
-          <Route path="add" element={<AddCourse setFeedback={setFeedback} />} />
+          <Route
+            path="add"
+            element={
+              <AddCourse
+                setIsLoading={setIsLoading}
+                setFeedback={setFeedback}
+              />
+            }
+          />
           <Route
             path="edit/:_id"
-            element={<EditCourse setFeedback={setFeedback} courses={courses} />}
+            element={
+              <EditCourse
+                setIsLoading={setIsLoading}
+                setFeedback={setFeedback}
+                courses={courses}
+              />
+            }
           />
           <Route
             path="delete/:_id"
             element={
-              <DeleteCourse courses={courses} setFeedback={setFeedback} />
+              <DeleteCourse
+                courses={courses}
+                setIsLoading={setIsLoading}
+                setFeedback={setFeedback}
+              />
             }
           />
         </Route>

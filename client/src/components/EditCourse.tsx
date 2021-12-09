@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Course } from "../types/api";
 
-const EditCourse = ({ setFeedback, courses }: Props) => {
+const EditCourse = ({ setFeedback, courses, setIsLoading }: Props) => {
   const { _id } = useParams();
   const nav = useNavigate();
   const [error, setError] = useState<string>("");
@@ -38,9 +38,11 @@ const EditCourse = ({ setFeedback, courses }: Props) => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (formIsValid()) {
-      submitForm();
+      setIsLoading(true);
+      await submitForm();
+      setIsLoading(false);
       nav("/");
     }
   };
@@ -103,6 +105,7 @@ const EditCourse = ({ setFeedback, courses }: Props) => {
 
 interface Props {
   setFeedback: (feedback: string) => void;
+  setIsLoading: Function;
   courses: Course[];
 }
 
