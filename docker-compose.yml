@@ -23,7 +23,7 @@ services:
 
   mongo:
     build:
-      context: ./mongo
+      context: ./mongo/
       dockerfile: Dockerfile
     image: mongo-server
     container_name: my-mongo-server
