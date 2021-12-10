@@ -1,6 +1,6 @@
 FROM mongo
 
-WORKDIR /usr/db
+WORKDIR /usr/db/
 
 # seed MongoDB database with starting collections
 COPY *.js /docker-entrypoint-initdb.d
