@@ -10,7 +10,7 @@ const DeleteCourse = ({ courses, setFeedback, setIsLoading }: Props) => {
 
   const handleDelete = async () => {
     setIsLoading(true);
-    const response = await fetch("http://localhost:8080/course", {
+    const response = await fetch("/course", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

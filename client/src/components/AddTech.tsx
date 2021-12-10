@@ -40,7 +40,7 @@ const AddTech = ({ courses, setFeedback, setIsLoading }: Props) => {
   };
 
   const submitForm = async () => {
-    const response = await fetch("http://localhost:8080/tech", {
+    const response = await fetch("/tech", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -25,7 +25,7 @@ const EditCourse = ({ setFeedback, courses, setIsLoading }: Props) => {
   };
 
   const submitForm = async () => {
-    const response = await fetch("http://localhost:8080/course", {
+    const response = await fetch("/course", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

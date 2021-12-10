@@ -11,7 +11,7 @@ const DeleteTech = ({ techs, setFeedback, setIsLoading }: Props) => {
 
   const handleDelete = async () => {
     setIsLoading(true);
-    const response = await fetch("http://localhost:8080/tech", {
+    const response = await fetch("/tech", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

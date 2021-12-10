@@ -46,7 +46,7 @@ const EditTech = ({ setFeedback, courses, techs, setIsLoading }: Props) => {
   };
 
   const submitForm = async () => {
-    const response = await fetch("http://localhost:8080/tech", {
+    const response = await fetch("/tech", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

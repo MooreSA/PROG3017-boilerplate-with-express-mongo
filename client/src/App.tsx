@@ -19,7 +19,7 @@ const App = () => {
 
   const updateData = async () => {
     setIsLoading(true);
-    const response = await fetch("http://localhost:8080/get", {
+    const response = await fetch("/get", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

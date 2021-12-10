@@ -21,7 +21,7 @@ const AddCourse = ({ setFeedback, setIsLoading }: Props) => {
   };
 
   const submitForm = async () => {
-    const response = await fetch("http://localhost:8080/course", {
+    const response = await fetch("/course", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
