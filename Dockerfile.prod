@@ -24,7 +24,7 @@ WORKDIR /usr/src/app/
 COPY --from=client /usr/app/client-tempy/build/ ./client/build/
 WORKDIR /usr/src/app/server/
 COPY server/package*.json ./
-RUN npm install -qy
+RUN npm install
 COPY server/ ./
 EXPOSE 8080
 CMD ["npm", "start"]
