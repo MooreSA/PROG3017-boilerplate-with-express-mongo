@@ -3,7 +3,7 @@
 # build and run with: docker compose -f docker-compose-prod.yml up --build
 
 # production docker-compose.yml
-version: '3.7'
+version: "3.7"
 
 services:
   webapp:
@@ -30,17 +30,17 @@ services:
     volumes:
       - data-volume:/data/db
     environment:
-      MONGO_INITDB_DATABASE: [Name of MongoDB Database]
+      MONGO_INITDB_DATABASE: dbData
     ports:
       - "27017:27017"
     networks:
       - app-network
 
 networks:
-    app-network:
-        driver: bridge
+  app-network:
+    driver: bridge
 
 volumes:
-    data-volume:
-    web-root:
-      driver: local
+  data-volume:
+  web-root:
+    driver: local
