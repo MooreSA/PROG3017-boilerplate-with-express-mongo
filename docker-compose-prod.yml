@@ -13,7 +13,7 @@ services:
     image: production-server
     container_name: my-production-server
     ports:
-      - "8080:8080"
+      - "8000:8000"
     environment:
       NODE_ENV: production
     depends_on:
