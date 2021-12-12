@@ -13,7 +13,7 @@ RUN yarn build
 # Stage 2: seed the mongoDB database
 FROM mongo
 WORKDIR /usr/db
-COPY mongo/*.js /docker-entrypoint-initdb.d
+COPY mongo/*.js /docker-entrypoint-initdb.d/
 
 # Stage 3 : Build Express Server on container
 # copies over client side production build to /usr/src/client/build
