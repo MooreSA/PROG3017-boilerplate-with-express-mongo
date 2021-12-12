@@ -370,4 +370,4 @@ app.use((request, response) => {
   response.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
 });
 
-app.listen(8000, () => console.log("Listening on port 8080"));
+app.listen(80, () => console.log("Listening on port 80"));
